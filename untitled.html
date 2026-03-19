@@ -292,7 +292,7 @@
     pointer-events: none;
   }
   .venue-logo {
-    width: 70px; height: 70px; object-fit: contain;
+    width: 150px; height: 150px; object-fit: contain;
     margin: 0 auto 14px; display: block;
     filter: sepia(1) saturate(.6) brightness(.8);
   }
@@ -563,8 +563,8 @@
   <!-- VIDEO — light silky fabric -->
   <video class="hero-video" id="heroVideo" autoplay muted loop playsinline crossorigin="anonymous">
     <!-- Multiple sources for best compatibility -->
-    <source src="https://cdn.pixabay.com/video/2022/08/01/126184-735726284_large.mp4" type="video/mp4">
-    <source src="https://dl.dropbox.com/scl/fi/aqup53mxqxord9wbpq5js/whitefabric-2.mp4?rlkey=4qlyyhyaiezk3vm13n6t2w2je&st=e4sdlfdb&dl=0" type="video/mp4">
+    <source src="./fon.mp4" type="video/mp4">
+    <source src="./fon.mp4" type="video/mp4">
   </video>
 
   <div class="hero-overlay"></div>
@@ -584,12 +584,6 @@
     </div>
     <div class="hero-date-row">
       <span class="hero-date">23 МАЙ · 2026</span>
-    </div>
-
-    <div class="hero-photo">
-      <img src="https://akbarsafarov.github.io/toy/image-name.png" alt="Мухаммаджон ва Нилуфар"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="hero-photo-placeholder" style="display:none;">М &amp; Н</div>
     </div>
   </div>
 
@@ -713,11 +707,9 @@
     <h2 class="sec-title">Меҳмонларга <em>илтимослар</em></h2>
     <div class="gift-grid">
       <div class="gift-card">
-        <div class="gift-icon">💌</div>
         <div class="gift-text">Биз учун энг муҳими — сизнинг тўй оқшомида бирга бўлишингиз. Эътиборингиз ва иштирокингизни чин қалбдан қадрлаймиз!</div>
       </div>
       <div class="gift-card">
-        <div class="gift-icon">💐</div>
         <div class="gift-text">Агар бизни янада хурсанд қилмоқчи бўлсангиз, ёш оиламиз бюджетига конвертда қўшадиган ҳиссангиз учун жуда миннатдор бўламиз!</div>
       </div>
     </div>
@@ -839,23 +831,23 @@ video.addEventListener('playing', () => { canvas.style.opacity = '0'; canvas.sty
 const tracks = [
   {
     title: 'Tender Love',
-    src: 'https://www.fesliyanstudios.com/play-mp3/266'
+    src: 'music.mp3'
   },
   {
     title: 'Soaring Through The Skies',
-    src: 'https://www.fesliyanstudios.com/play-mp3/3222'
+    src: 'music.mp3'
   },
   {
     title: 'Romantic Wedding Piano',
-    src: 'https://cdn.pixabay.com/audio/2022/03/15/audio_1b1e6a5c65.mp3'
+    src: 'music.mp3'
   },
   {
     title: 'Wedding Waltz',
-    src: 'https://cdn.pixabay.com/audio/2022/08/02/audio_884fe92c21.mp3'
+    src: 'music.mp3'
   },
   {
     title: 'Gentle Love',
-    src: 'https://cdn.pixabay.com/audio/2021/11/13/audio_cb31e6b535.mp3'
+    src: 'music.mp3'
   }
 ];
 
