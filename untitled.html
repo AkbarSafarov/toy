@@ -292,10 +292,18 @@
     pointer-events: none;
   }
   .venue-logo {
-    width: 150px; height: 150px; object-fit: contain;
-    margin: 0 auto 14px; display: block;
-    filter: sepia(1) saturate(.6) brightness(.8);
+    width: 200px; height: 200px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
   }
+   .venue-logo img{
+      max-width: 300px;
+      object-fit: contain;display: block;
+    filter: sepia(1) saturate(.6) brightness(.8);
+  
+    }
   .venue-name-big {
     font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400;
     color: var(--text); position: relative;
@@ -355,7 +363,7 @@
   ══════════════════════════════ */
   .closing {
     background: linear-gradient(180deg, var(--blush) 0%, var(--rose) 100%);
-    padding: 72px 32px 60px; margin-top: 60px; text-align: center;
+    padding: 72px 32px 60px; text-align: center;
     position: relative; overflow: hidden;
   }
   .closing::before {
@@ -563,8 +571,8 @@
   <!-- VIDEO — light silky fabric -->
   <video class="hero-video" id="heroVideo" autoplay muted loop playsinline crossorigin="anonymous">
     <!-- Multiple sources for best compatibility -->
-    <source src="./fon.mp4" type="video/mp4">
-    <source src="./fon.mp4" type="video/mp4">
+    <source src="fon.mp4" type="video/mp4">
+    <source src="fon.mp4" type="video/mp4">
   </video>
 
   <div class="hero-overlay"></div>
@@ -664,8 +672,10 @@
     <h2 class="sec-title">Тўй <em>жойи</em></h2>
     <div class="venue-card">
       <div class="venue-header">
-        <img class="venue-logo" src="https://akbarsafarov.github.io/toy/logo-res.png" alt="Остров сокровищ"
+        <div class="venue-logo">
+        <img src="https://akbarsafarov.github.io/toy/logo-res.png" alt="Остров сокровищ"
              onerror="this.style.display='none'">
+           </div> 
         <div class="venue-name-big">«Остров сокровищ»</div>
         <span class="venue-sub-lbl">«Трактир» ресторани</span>
       </div>
@@ -719,7 +729,7 @@
 <!-- ══ BOTTOM IMAGE ══ -->
 <div class="section fade-in" style="margin-top:48px;">
   <img src="https://akbarsafarov.github.io/toy/image-bottom.png" alt=""
-       style="width:100%;display:block;border-radius:18px;box-shadow:0 8px 32px rgba(160,120,64,.1);"
+       style="width:100%;display:block;border-radius:18px;"
        onerror="this.style.display='none'">
 </div>
 
