@@ -34,7 +34,6 @@
   /* ══════════════════════════════
      UNLOCK SCREEN
   ══════════════════════════════ */
-  
   #unlock-screen {
     position: fixed; inset: 0; z-index: 200;
     background: var(--cream);
@@ -403,6 +402,128 @@
     .timeline::before { left: 25px; }
     .closing { padding: 56px 24px 48px; }
   }
+
+  /* ══════════════════════════════
+     FLOATING AUDIO PLAYER
+  ══════════════════════════════ */
+  #audio-player {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    z-index: 300;
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(253,250,245,.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(201,169,110,.35);
+    border-radius: 60px;
+    padding: 10px 20px 10px 10px;
+    box-shadow: 0 8px 32px rgba(160,120,64,.18), 0 2px 8px rgba(160,120,64,.1);
+    transition: transform .3s ease, opacity .3s ease;
+  }
+  #audio-player.hidden-player {
+    transform: translateY(80px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* vinyl disc */
+  .vinyl {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--text) 0deg, #3d2510 30deg, var(--text) 60deg,
+      #3d2510 90deg, var(--text) 120deg, #3d2510 150deg,
+      var(--text) 180deg, #3d2510 210deg, var(--text) 240deg,
+      #3d2510 270deg, var(--text) 300deg, #3d2510 330deg, var(--text) 360deg
+    );
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    transition: animation .3s;
+  }
+  .vinyl.spinning { animation: spinVinyl 3s linear infinite; }
+  @keyframes spinVinyl { to { transform: rotate(360deg); } }
+
+  .vinyl-center {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+  }
+
+  .player-info { min-width: 0; }
+  .player-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-style: italic;
+    color: var(--text); line-height: 1.2;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 140px;
+  }
+  .player-artist {
+    font-size: 10px; letter-spacing: .08em;
+    color: var(--text-soft); margin-top: 2px;
+  }
+
+  .player-controls { display: flex; align-items: center; gap: 8px; }
+
+  .ctrl-btn {
+    width: 32px; height: 32px;
+    border-radius: 50%; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .15s, background .15s;
+    background: transparent; color: var(--text-mid);
+  }
+  .ctrl-btn:hover { background: var(--blush); transform: scale(1.1); }
+
+  .ctrl-btn.play-btn {
+    width: 40px; height: 40px;
+    background: var(--gold);
+    color: white;
+    box-shadow: 0 2px 10px rgba(201,169,110,.4);
+  }
+  .ctrl-btn.play-btn:hover { background: var(--gold-dark); transform: scale(1.08); }
+
+  /* progress bar */
+  .player-progress {
+    position: absolute;
+    bottom: 0; left: 16px; right: 16px;
+    height: 2px;
+    background: rgba(201,169,110,.2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .player-progress-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 2px;
+    width: 0%;
+    transition: width .5s linear;
+  }
+
+  /* volume indicator dots */
+  .vol-dots {
+    display: flex; gap: 3px; align-items: flex-end;
+    height: 16px;
+  }
+  .vol-dot {
+    width: 3px; border-radius: 2px;
+    background: var(--gold-light);
+    animation: volBeat var(--vd, .8s) var(--vdelay, 0s) ease-in-out infinite alternate;
+  }
+  @keyframes volBeat {
+    from { height: 4px; opacity: .4; }
+    to   { height: 14px; opacity: 1; }
+  }
+  .vol-dot:nth-child(1) { --vd:.7s; --vdelay:0s; }
+  .vol-dot:nth-child(2) { --vd:.9s; --vdelay:.15s; }
+  .vol-dot:nth-child(3) { --vd:.6s; --vdelay:.3s; }
+  .vol-dots.paused .vol-dot { animation: none; height: 4px; opacity: .3; }
+
+  @media (max-width: 480px) {
+    #audio-player { bottom: 16px; right: 16px; padding: 8px 14px 8px 8px; gap: 10px; }
+    .player-title { max-width: 100px; font-size: 12px; }
+    .player-artist { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -627,6 +748,51 @@
   </div>
 </div>
 
+<!-- ══ FLOATING AUDIO PLAYER ══ -->
+<div id="audio-player" class="hidden-player">
+  <div class="vinyl" id="vinyl">
+    <div class="vinyl-center"></div>
+  </div>
+  <div class="player-info">
+    <div class="player-title" id="trackTitle">Romantic Piano</div>
+    <div class="player-artist">Тўй мусиқаси 🎵</div>
+  </div>
+  <div class="vol-dots" id="volDots">
+    <div class="vol-dot paused"></div>
+    <div class="vol-dot paused"></div>
+    <div class="vol-dot paused"></div>
+  </div>
+  <div class="player-controls">
+    <button class="ctrl-btn" id="prevBtn" title="Олдинги">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M10 3L5 7l5 4V3z" fill="currentColor"/>
+        <rect x="2" y="3" width="2" height="8" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
+    <button class="ctrl-btn play-btn" id="playBtn" title="Ўйнатиш">
+      <svg id="playIcon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M4 2.5l7 4.5-7 4.5V2.5z" fill="currentColor"/>
+      </svg>
+      <svg id="pauseIcon" width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:none">
+        <rect x="3" y="2" width="3" height="10" rx="1" fill="currentColor"/>
+        <rect x="8" y="2" width="3" height="10" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
+    <button class="ctrl-btn" id="nextBtn" title="Кейинги">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M4 3l5 4-5 4V3z" fill="currentColor"/>
+        <rect x="10" y="3" width="2" height="8" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+  <div class="player-progress">
+    <div class="player-progress-fill" id="progressFill"></div>
+  </div>
+</div>
+
+<!-- Hidden audio element -->
+<audio id="bgAudio" loop preload="none"></audio>
+
 <script>
 /* ─── Scroll fade-in ─── */
 const obs = new IntersectionObserver(entries => {
@@ -666,9 +832,98 @@ function spawnOrbs() {
 }
 spawnOrbs();
 
-/* Show bokeh if video can't load */
 video.addEventListener('error', () => { canvas.style.opacity = '1'; });
 video.addEventListener('playing', () => { canvas.style.opacity = '0'; canvas.style.transition = 'opacity 1s'; });
+
+/* ─── AUDIO PLAYER ─── */
+const tracks = [
+  {
+    title: 'Tender Love',
+    src: 'https://www.fesliyanstudios.com/play-mp3/266'
+  },
+  {
+    title: 'Soaring Through The Skies',
+    src: 'https://www.fesliyanstudios.com/play-mp3/3222'
+  },
+  {
+    title: 'Romantic Wedding Piano',
+    src: 'https://cdn.pixabay.com/audio/2022/03/15/audio_1b1e6a5c65.mp3'
+  },
+  {
+    title: 'Wedding Waltz',
+    src: 'https://cdn.pixabay.com/audio/2022/08/02/audio_884fe92c21.mp3'
+  },
+  {
+    title: 'Gentle Love',
+    src: 'https://cdn.pixabay.com/audio/2021/11/13/audio_cb31e6b535.mp3'
+  }
+];
+
+let currentTrack = 0;
+let isPlaying = false;
+
+const audio       = document.getElementById('bgAudio');
+const playerEl    = document.getElementById('audio-player');
+const playBtn     = document.getElementById('playBtn');
+const playIcon    = document.getElementById('playIcon');
+const pauseIcon   = document.getElementById('pauseIcon');
+const prevBtn     = document.getElementById('prevBtn');
+const nextBtn     = document.getElementById('nextBtn');
+const titleEl     = document.getElementById('trackTitle');
+const vinylEl     = document.getElementById('vinyl');
+const volDots     = document.getElementById('volDots');
+const progressFill= document.getElementById('progressFill');
+
+function loadTrack(idx) {
+  currentTrack = (idx + tracks.length) % tracks.length;
+  audio.src = tracks[currentTrack].src;
+  titleEl.textContent = tracks[currentTrack].title;
+  if (isPlaying) audio.play().catch(() => {});
+}
+
+function setPlaying(state) {
+  isPlaying = state;
+  if (state) {
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = '';
+    vinylEl.classList.add('spinning');
+    volDots.classList.remove('paused');
+    audio.play().catch(() => { setPlaying(false); });
+  } else {
+    playIcon.style.display = '';
+    pauseIcon.style.display = 'none';
+    vinylEl.classList.remove('spinning');
+    volDots.classList.add('paused');
+    audio.pause();
+  }
+}
+
+playBtn.addEventListener('click', () => setPlaying(!isPlaying));
+prevBtn.addEventListener('click', () => loadTrack(currentTrack - 1));
+nextBtn.addEventListener('click', () => loadTrack(currentTrack + 1));
+audio.addEventListener('ended', () => loadTrack(currentTrack + 1));
+
+audio.addEventListener('timeupdate', () => {
+  if (audio.duration) {
+    progressFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+  }
+});
+
+/* Try next track if current fails */
+audio.addEventListener('error', () => {
+  setTimeout(() => loadTrack(currentTrack + 1), 800);
+});
+
+/* Show player after unlock */
+function showPlayer() {
+  loadTrack(0);
+  playerEl.classList.remove('hidden-player');
+  /* Auto-play after a short delay (browsers may block instant autoplay) */
+  setTimeout(() => setPlaying(true), 600);
+}
+
+/* Hook into unlock button */
+document.querySelector('.unlock-btn').addEventListener('click', showPlayer);
 </script>
 </body>
 </html>
