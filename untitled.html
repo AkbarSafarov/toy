@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Шелк — Тўй таклифномаси</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Tenor+Sans&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
-<style>
-  :root {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шелк — Тўй таклифномаси</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Tenor+Sans&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
     --cream:      #fdfaf5;
     --warm:       #f7f1e8;
     --gold:       #c9a96e;
@@ -97,7 +98,9 @@
 
   /* VIDEO */
   .hero-video {
-    position: absolute; inset: 0;
+    position: fixed;
+    top: 0;
+    left: 0; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
     pointer-events: none;
@@ -105,7 +108,9 @@
 
   /* light warm overlay on top of video */
   .hero-overlay {
-    position: absolute; inset: 0;
+    position: fixed;
+    top: 0;
+    left: 0; inset: 0;
     background:
       linear-gradient(to bottom,
         rgba(253,250,245,.88) 0%,
@@ -534,289 +539,283 @@
   }
 </style>
 </head>
+
 <body>
-
-<!-- ══ UNLOCK SCREEN ══ -->
-<div id="unlock-screen">
-  <div class="petal-ring">
-    <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="45" cy="18" rx="6" ry="14" fill="#e8d4a8" opacity=".8"/>
-      <ellipse cx="45" cy="72" rx="6" ry="14" fill="#e8d4a8" opacity=".8"/>
-      <ellipse cx="18" cy="45" rx="14" ry="6" fill="#e8d4a8" opacity=".8"/>
-      <ellipse cx="72" cy="45" rx="14" ry="6" fill="#e8d4a8" opacity=".8"/>
-      <ellipse cx="26" cy="26" rx="6" ry="14" fill="#c9a96e" opacity=".6" transform="rotate(-45 26 26)"/>
-      <ellipse cx="64" cy="64" rx="6" ry="14" fill="#c9a96e" opacity=".6" transform="rotate(-45 64 64)"/>
-      <ellipse cx="64" cy="26" rx="6" ry="14" fill="#c9a96e" opacity=".6" transform="rotate(45 64 26)"/>
-      <ellipse cx="26" cy="64" rx="6" ry="14" fill="#c9a96e" opacity=".6" transform="rotate(45 26 64)"/>
-      <circle cx="45" cy="45" r="6" fill="#c9a96e"/>
-    </svg>
-  </div>
-  <p class="unlock-subtitle">Таклифномани очинг</p>
-  <div class="unlock-names">
-    <em>Мухаммаджон</em>
-    <span class="unlock-amp">&amp;</span>
-    <em>Нилуфар</em>
-  </div>
-  <button class="unlock-btn" onclick="document.getElementById('unlock-screen').classList.add('hidden')">
-    Очиш
-  </button>
-</div>
-
-<!-- ══ HERO ══ -->
-<div class="hero">
-
-  <!-- Bokeh orbs fallback -->
-  <div class="bokeh-canvas" id="bokehCanvas"></div>
-
-  <!-- VIDEO — light silky fabric -->
-  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline crossorigin="anonymous">
-    <!-- Multiple sources for best compatibility -->
-    <source src="https://cdn.pixabay.com/video/2022/08/01/126184-735726284_large.mp4" type="video/mp4">
-    <source src="https://dl.dropbox.com/scl/fi/aqup53mxqxord9wbpq5js/whitefabric-2.mp4?rlkey=4qlyyhyaiezk3vm13n6t2w2je&st=e4sdlfdb&dl=0" type="video/mp4">
-  </video>
-
-  <div class="hero-overlay"></div>
-
-  <!-- silk threads -->
-  <div class="thread thread-1"></div>
-  <div class="thread thread-2"></div>
-  <div class="thread thread-3"></div>
-  <div class="thread thread-4"></div>
-
-  <div class="hero-inner">
-    <span class="hero-eyebrow">Тўйга таклифнома · 23 Май 2026</span>
-    <div class="hero-names">
-      <em>Мухаммаджон</em>
-      <span class="hero-amp">&amp;</span>
-      <em>Нилуфар</em>
+    <!-- ══ UNLOCK SCREEN ══ -->
+    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline crossorigin="anonymous">
+        <!-- Multiple sources for best compatibility -->
+        <source src="https://cdn.pixabay.com/video/2022/08/01/126184-735726284_large.mp4" type="video/mp4">
+        <source src="https://dl.dropbox.com/scl/fi/aqup53mxqxord9wbpq5js/whitefabric-2.mp4?rlkey=4qlyyhyaiezk3vm13n6t2w2je&st=e4sdlfdb&dl=0" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div id="unlock-screen">
+        <div class="petal-ring">
+            <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="45" cy="18" rx="6" ry="14" fill="#e8d4a8" opacity=".8" />
+                <ellipse cx="45" cy="72" rx="6" ry="14" fill="#e8d4a8" opacity=".8" />
+                <ellipse cx="18" cy="45" rx="14" ry="6" fill="#e8d4a8" opacity=".8" />
+                <ellipse cx="72" cy="45" rx="14" ry="6" fill="#e8d4a8" opacity=".8" />
+                <ellipse cx="26" cy="26" rx="6" ry="14" fill="#c9a96e" opacity=".6" transform="rotate(-45 26 26)" />
+                <ellipse cx="64" cy="64" rx="6" ry="14" fill="#c9a96e" opacity=".6" transform="rotate(-45 64 64)" />
+                <ellipse cx="64" cy="26" rx="6" ry="14" fill="#c9a96e" opacity=".6" transform="rotate(45 64 26)" />
+                <ellipse cx="26" cy="64" rx="6" ry="14" fill="#c9a96e" opacity=".6" transform="rotate(45 26 64)" />
+                <circle cx="45" cy="45" r="6" fill="#c9a96e" />
+            </svg>
+        </div>
+        <p class="unlock-subtitle">Таклифномани очинг</p>
+        <div class="unlock-names">
+            <em>Мухаммаджон</em>
+            <span class="unlock-amp">&amp;</span>
+            <em>Нилуфар</em>
+        </div>
+        <button class="unlock-btn" onclick="document.getElementById('unlock-screen').classList.add('hidden')">
+            Очиш
+        </button>
     </div>
-    <div class="hero-date-row">
-      <span class="hero-date">23 МАЙ · 2026</span>
+    <!-- ══ HERO ══ -->
+    <div class="hero">
+        <!-- Bokeh orbs fallback -->
+        <div class="bokeh-canvas" id="bokehCanvas"></div>
+        <!-- VIDEO — light silky fabric -->
+        <!-- silk threads -->
+        <div class="thread thread-1"></div>
+        <div class="thread thread-2"></div>
+        <div class="thread thread-3"></div>
+        <div class="thread thread-4"></div>
+        <div class="hero-inner">
+            <span class="hero-eyebrow">Тўйга таклифнома · 23 Май 2026</span>
+            <div class="hero-names">
+                <em>Мухаммаджон</em>
+                <span class="hero-amp">&amp;</span>
+                <em>Нилуфар</em>
+            </div>
+            <div class="hero-date-row">
+                <span class="hero-date">23 МАЙ · 2026</span>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            пастга айланинг
+        </div>
     </div>
-  </div>
-
-  <div class="scroll-hint">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    пастга айланинг
-  </div>
-</div>
-
-<!-- ══ INVITE TEXT ══ -->
-<div class="section" style="padding-top:0;">
-  <div class="divider fade-in">
-    <div class="dv-line"></div><div class="dv-dot"></div>
-    <div class="dv-gem"></div>
-    <div class="dv-dot"></div><div class="dv-line"></div>
-  </div>
-  <div class="fade-in">
-    <img src="https://akbarsafarov.github.io/toy/image-top.png" alt=""
-         style="width:100%;max-width:300px;display:block;margin:0 auto 28px;border-radius:12px;"
-         onerror="this.style.display='none'">
-    <span class="tag">Хурматли меҳмонлар</span>
-    <div class="quote">
-      <p>Биз бу кунни такрорланмас тарзда ёдда сақлаб қолмоқчимиз. Шу унутилмас, бахтли онларда қувончимизга шерик бўлишингизни истаймиз!</p>
+    <!-- ══ INVITE TEXT ══ -->
+    <div class="section" style="padding-top:0;">
+        <div class="divider fade-in">
+            <div class="dv-line"></div>
+            <div class="dv-dot"></div>
+            <div class="dv-gem"></div>
+            <div class="dv-dot"></div>
+            <div class="dv-line"></div>
+        </div>
+        <div class="fade-in">
+            <img src="https://akbarsafarov.github.io/toy/image-top.png" alt="" style="width:100%;max-width:300px;display:block;margin:0 auto 28px;border-radius:12px;" onerror="this.style.display='none'">
+            <span class="tag">Хурматли меҳмонлар</span>
+            <div class="quote">
+                <p>Биз бу кунни такрорланмас тарзда ёдда сақлаб қолмоқчимиз. Шу унутилмас, бахтли онларда қувончимизга шерик бўлишингизни истаймиз!</p>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
-<!-- ══ TIMELINE ══ -->
-<div class="section">
-  <div class="divider fade-in">
-    <div class="dv-line"></div><div class="dv-gem"></div><div class="dv-line"></div>
-  </div>
-  <div class="fade-in">
-    <span class="tag">Тўй режаси</span>
-    <h2 class="sec-title">Байрам <em>дастури</em></h2>
-  </div>
-  <div class="timeline fade-in">
-    <div class="tl-item">
-      <div class="tl-dot">16:30</div>
-      <div class="tl-body">
-        <div class="tl-name">Меҳмонлар тўпланиши</div>
-        <div class="tl-desc">Меҳмонлар тўпланиши ва кутиб олиш. Бу вақт давомида зерикмайсиз деб умид қиламиз.</div>
-      </div>
+    <!-- ══ TIMELINE ══ -->
+    <div class="section">
+        <div class="divider fade-in">
+            <div class="dv-line"></div>
+            <div class="dv-gem"></div>
+            <div class="dv-line"></div>
+        </div>
+        <div class="fade-in">
+            <span class="tag">Тўй режаси</span>
+            <h2 class="sec-title">Байрам <em>дастури</em></h2>
+        </div>
+        <div class="timeline fade-in">
+            <div class="tl-item">
+                <div class="tl-dot">16:30</div>
+                <div class="tl-body">
+                    <div class="tl-name">Меҳмонлар тўпланиши</div>
+                    <div class="tl-desc">Меҳмонлар тўпланиши ва кутиб олиш. Бу вақт давомида зерикмайсиз деб умид қиламиз.</div>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot">17:00</div>
+                <div class="tl-body">
+                    <div class="tl-name">Маросим бошланиши</div>
+                    <div class="tl-desc">Сиз янги оила яратилишига — бизнинг оиламизга гувоҳ бўлишингизни кутамиз.</div>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot">17:30</div>
+                <div class="tl-body">
+                    <div class="tl-name">«Келин салом» · «Юз очди»</div>
+                    <div class="tl-desc">Анъанавий маросимлар ва байрамона лаҳзалар</div>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot">18:00</div>
+                <div class="tl-body">
+                    <div class="tl-name">Базм</div>
+                    <div class="tl-desc">Дастурхон, рақс ва умр бўйи ёдда қоладиган лаҳзалар</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-dot">17:00</div>
-      <div class="tl-body">
-        <div class="tl-name">Маросим бошланиши</div>
-        <div class="tl-desc">Сиз янги оила яратилишига — бизнинг оиламизга гувоҳ бўлишингизни кутамиз.</div>
-      </div>
+    <!-- ══ VENUE ══ -->
+    <div class="section">
+        <div class="divider fade-in">
+            <div class="dv-line"></div>
+            <div class="dv-gem"></div>
+            <div class="dv-line"></div>
+        </div>
+        <div class="fade-in">
+            <span class="tag">Манзил</span>
+            <h2 class="sec-title">Тўй <em>жойи</em></h2>
+            <div class="venue-card">
+                <div class="venue-header">
+                    <div class="venue-logo">
+                        <img src="https://akbarsafarov.github.io/toy/logo-res.png" alt="Остров сокровищ" onerror="this.style.display='none'">
+                    </div>
+                    <div class="venue-name-big">«Остров сокровищ»</div>
+                    <span class="venue-sub-lbl">«Трактир» ресторани</span>
+                </div>
+                <div class="venue-body">
+                    <p class="venue-addr">Фарғона шаҳар,<br>Маъррифат кўчаси, 43А</p>
+                    <a class="btn-map" href="https://yandex.uz/maps/10336/fergana/?ll=71.786267%2C40.385688&mode=poi&poi%5Bpoint%5D=71.786361%2C40.386613&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D47566713885&z=17.86" target="_blank">
+                        <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                            <circle cx="7" cy="6" r="3" stroke="currentColor" stroke-width="1.3" />
+                            <path d="M7 9s-3.5 2.5-3.5 4h7C10.5 11.5 7 9 7 9z" fill="currentColor" opacity=".5" />
+                        </svg>
+                        Харитада кўриш
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-dot">17:30</div>
-      <div class="tl-body">
-        <div class="tl-name">«Келин салом» · «Юз очди»</div>
-        <div class="tl-desc">Анъанавий маросимлар ва байрамона лаҳзалар</div>
-      </div>
+    <!-- ══ COUPLE PHOTO ══ -->
+    <div class="couple-wrap fade-in">
+        <div class="divider">
+            <div class="dv-line"></div>
+            <div class="dv-gem"></div>
+            <div class="dv-line"></div>
+        </div>
+        <div class="couple-photo">
+            <img src="https://akbarsafarov.github.io/toy/photo.jpg" alt="Мухаммаджон ва Нилуфар" onerror="this.closest('.couple-photo').style.display='none'">
+            <div class="couple-cap">
+                <p>Мухаммаджон ва Нилуфар</p>
+            </div>
+        </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-dot">18:00</div>
-      <div class="tl-body">
-        <div class="tl-name">Базм</div>
-        <div class="tl-desc">Дастурхон, рақс ва умр бўйи ёдда қоладиган лаҳзалар</div>
-      </div>
+    <!-- ══ GIFTS ══ -->
+    <div class="section">
+        <div class="divider fade-in">
+            <div class="dv-line"></div>
+            <div class="dv-gem"></div>
+            <div class="dv-line"></div>
+        </div>
+        <div class="fade-in">
+            <span class="tag">Совғалар</span>
+            <h2 class="sec-title">Меҳмонларга <em>илтимослар</em></h2>
+            <div class="gift-grid">
+                <div class="gift-card">
+                    <div class="gift-text">Биз учун энг муҳими — сизнинг тўй оқшомида бирга бўлишингиз. Эътиборингиз ва иштирокингизни чин қалбдан қадрлаймиз!</div>
+                </div>
+                <div class="gift-card">
+                    <div class="gift-text">Агар бизни янада хурсанд қилмоқчи бўлсангиз, ёш оиламиз бюджетига конвертда қўшадиган ҳиссангиз учун жуда миннатдор бўламиз!</div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
-<!-- ══ VENUE ══ -->
-<div class="section">
-  <div class="divider fade-in">
-    <div class="dv-line"></div><div class="dv-gem"></div><div class="dv-line"></div>
-  </div>
-  <div class="fade-in">
-    <span class="tag">Манзил</span>
-    <h2 class="sec-title">Тўй <em>жойи</em></h2>
-    <div class="venue-card">
-      <div class="venue-header">
-        <div class="venue-logo">
-        <img src="https://akbarsafarov.github.io/toy/logo-res.png" alt="Остров сокровищ"
-             onerror="this.style.display='none'">
-           </div> 
-        <div class="venue-name-big">«Остров сокровищ»</div>
-        <span class="venue-sub-lbl">«Трактир» ресторани</span>
-      </div>
-      <div class="venue-body">
-        <p class="venue-addr">Фарғона шаҳар,<br>Маъррифат кўчаси, 43А</p>
-        <a class="btn-map" href="https://yandex.uz/maps/10336/fergana/?ll=71.786267%2C40.385688&mode=poi&poi%5Bpoint%5D=71.786361%2C40.386613&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D47566713885&z=17.86" target="_blank">
-          <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-            <circle cx="7" cy="6" r="3" stroke="currentColor" stroke-width="1.3"/>
-            <path d="M7 9s-3.5 2.5-3.5 4h7C10.5 11.5 7 9 7 9z" fill="currentColor" opacity=".5"/>
-          </svg>
-          Харитада кўриш
-        </a>
-      </div>
+    <!-- ══ BOTTOM IMAGE ══ -->
+    <div class="section fade-in" style="margin-top:48px;">
+        <img src="https://akbarsafarov.github.io/toy/image-bottom.png" alt="" style="width:100%;display:block;border-radius:18px;" onerror="this.style.display='none'">
     </div>
-  </div>
-</div>
-
-<!-- ══ COUPLE PHOTO ══ -->
-<div class="couple-wrap fade-in">
-  <div class="divider">
-    <div class="dv-line"></div><div class="dv-gem"></div><div class="dv-line"></div>
-  </div>
-  <div class="couple-photo">
-    <img src="https://akbarsafarov.github.io/toy/photo.jpg" alt="Мухаммаджон ва Нилуфар"
-         onerror="this.closest('.couple-photo').style.display='none'">
-    <div class="couple-cap">
-      <p>Мухаммаджон ва Нилуфар</p>
+    <!-- ══ CLOSING ══ -->
+    <div class="closing fade-in">
+        <div class="or-row">
+            <div class="or-line"></div>
+            <div class="or-dot"></div>
+            <div class="or-dot"></div>
+            <div class="or-dot"></div>
+            <div class="or-line"></div>
+        </div>
+        <span class="closing-tag">Тўйга хуш келибсиз</span>
+        <p class="closing-text">
+            Бу бахтли кунда биз билан бирга бўлганингиз учун<br>самимий миннатдорчилик билдирамиз
+        </p>
+        <div class="closing-sig">Хурмат билан,<br>Мухаммаджон ва Нилуфар 🤍</div>
+        <div class="or-row" style="margin-top:36px;">
+            <div class="or-line"></div>
+            <div class="or-dot"></div>
+            <div class="or-line"></div>
+        </div>
     </div>
-  </div>
-</div>
-
-<!-- ══ GIFTS ══ -->
-<div class="section">
-  <div class="divider fade-in">
-    <div class="dv-line"></div><div class="dv-gem"></div><div class="dv-line"></div>
-  </div>
-  <div class="fade-in">
-    <span class="tag">Совғалар</span>
-    <h2 class="sec-title">Меҳмонларга <em>илтимослар</em></h2>
-    <div class="gift-grid">
-      <div class="gift-card">
-        <div class="gift-text">Биз учун энг муҳими — сизнинг тўй оқшомида бирга бўлишингиз. Эътиборингиз ва иштирокингизни чин қалбдан қадрлаймиз!</div>
-      </div>
-      <div class="gift-card">
-        <div class="gift-text">Агар бизни янада хурсанд қилмоқчи бўлсангиз, ёш оиламиз бюджетига конвертда қўшадиган ҳиссангиз учун жуда миннатдор бўламиз!</div>
-      </div>
+    <!-- ══ FLOATING AUDIO PLAYER ══ -->
+    <div id="audio-player" class="hidden-player">
+        <div class="vinyl" id="vinyl">
+            <div class="vinyl-center"></div>
+        </div>
+        <div class="vol-dots" id="volDots">
+            <div class="vol-dot paused"></div>
+            <div class="vol-dot paused"></div>
+            <div class="vol-dot paused"></div>
+        </div>
+        <div class="player-controls">
+            <button class="ctrl-btn" id="prevBtn" title="Олдинги">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M10 3L5 7l5 4V3z" fill="currentColor" />
+                    <rect x="2" y="3" width="2" height="8" rx="1" fill="currentColor" />
+                </svg>
+            </button>
+            <button class="ctrl-btn play-btn" id="playBtn" title="Ўйнатиш">
+                <svg id="playIcon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M4 2.5l7 4.5-7 4.5V2.5z" fill="currentColor" />
+                </svg>
+                <svg id="pauseIcon" width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:none">
+                    <rect x="3" y="2" width="3" height="10" rx="1" fill="currentColor" />
+                    <rect x="8" y="2" width="3" height="10" rx="1" fill="currentColor" />
+                </svg>
+            </button>
+            <button class="ctrl-btn" id="nextBtn" title="Кейинги">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M4 3l5 4-5 4V3z" fill="currentColor" />
+                    <rect x="10" y="3" width="2" height="8" rx="1" fill="currentColor" />
+                </svg>
+            </button>
+        </div>
+        <div class="player-progress">
+            <div class="player-progress-fill" id="progressFill"></div>
+        </div>
     </div>
-  </div>
-</div>
+    <!-- Hidden audio element -->
+    <audio id="bgAudio" loop preload="none"></audio>
+    <script>
+    /* ─── Scroll fade-in ─── */
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                obs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-<!-- ══ BOTTOM IMAGE ══ -->
-<div class="section fade-in" style="margin-top:48px;">
-  <img src="https://akbarsafarov.github.io/toy/image-bottom.png" alt=""
-       style="width:100%;display:block;border-radius:18px;"
-       onerror="this.style.display='none'">
-</div>
+    /* ─── CSS Bokeh fallback if video fails ─── */
+    const video = document.getElementById('heroVideo');
+    const canvas = document.getElementById('bokehCanvas');
 
-<!-- ══ CLOSING ══ -->
-<div class="closing fade-in">
-  <div class="or-row">
-    <div class="or-line"></div><div class="or-dot"></div>
-    <div class="or-dot"></div><div class="or-dot"></div>
-    <div class="or-line"></div>
-  </div>
-  <span class="closing-tag">Тўйга хуш келибсиз</span>
-  <p class="closing-text">
-    Бу бахтли кунда биз билан бирга бўлганингиз учун<br>самимий миннатдорчилик билдирамиз
-  </p>
-  <div class="closing-sig">Хурмат билан,<br>Мухаммаджон ва Нилуфар 🤍</div>
-  <div class="or-row" style="margin-top:36px;">
-    <div class="or-line"></div><div class="or-dot"></div><div class="or-line"></div>
-  </div>
-</div>
-
-<!-- ══ FLOATING AUDIO PLAYER ══ -->
-<div id="audio-player" class="hidden-player">
-  <div class="vinyl" id="vinyl">
-    <div class="vinyl-center"></div>
-  </div>
-  <div class="vol-dots" id="volDots">
-    <div class="vol-dot paused"></div>
-    <div class="vol-dot paused"></div>
-    <div class="vol-dot paused"></div>
-  </div>
-  <div class="player-controls">
-    <button class="ctrl-btn" id="prevBtn" title="Олдинги">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M10 3L5 7l5 4V3z" fill="currentColor"/>
-        <rect x="2" y="3" width="2" height="8" rx="1" fill="currentColor"/>
-      </svg>
-    </button>
-    <button class="ctrl-btn play-btn" id="playBtn" title="Ўйнатиш">
-      <svg id="playIcon" width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M4 2.5l7 4.5-7 4.5V2.5z" fill="currentColor"/>
-      </svg>
-      <svg id="pauseIcon" width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:none">
-        <rect x="3" y="2" width="3" height="10" rx="1" fill="currentColor"/>
-        <rect x="8" y="2" width="3" height="10" rx="1" fill="currentColor"/>
-      </svg>
-    </button>
-    <button class="ctrl-btn" id="nextBtn" title="Кейинги">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M4 3l5 4-5 4V3z" fill="currentColor"/>
-        <rect x="10" y="3" width="2" height="8" rx="1" fill="currentColor"/>
-      </svg>
-    </button>
-  </div>
-  <div class="player-progress">
-    <div class="player-progress-fill" id="progressFill"></div>
-  </div>
-</div>
-
-<!-- Hidden audio element -->
-<audio id="bgAudio" loop preload="none"></audio>
-
-<script>
-/* ─── Scroll fade-in ─── */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-
-/* ─── CSS Bokeh fallback if video fails ─── */
-const video = document.getElementById('heroVideo');
-const canvas = document.getElementById('bokehCanvas');
-
-function spawnOrbs() {
-  const colors = [
-    'rgba(232,212,168,VAR)', 'rgba(242,228,216,VAR)',
-    'rgba(201,169,110,VAR)', 'rgba(255,255,255,VAR)',
-    'rgba(232,207,192,VAR)'
-  ];
-  for (let i = 0; i < 18; i++) {
-    const orb = document.createElement('div');
-    orb.className = 'bokeh-orb';
-    const size = 60 + Math.random() * 180;
-    const op = (.15 + Math.random() * .25).toFixed(2);
-    const color = colors[Math.floor(Math.random() * colors.length)].replace('VAR', op);
-    orb.style.cssText = `
+    function spawnOrbs() {
+        const colors = [
+            'rgba(232,212,168,VAR)', 'rgba(242,228,216,VAR)',
+            'rgba(201,169,110,VAR)', 'rgba(255,255,255,VAR)',
+            'rgba(232,207,192,VAR)'
+        ];
+        for (let i = 0; i < 18; i++) {
+            const orb = document.createElement('div');
+            orb.className = 'bokeh-orb';
+            const size = 60 + Math.random() * 180;
+            const op = (.15 + Math.random() * .25).toFixed(2);
+            const color = colors[Math.floor(Math.random() * colors.length)].replace('VAR', op);
+            orb.style.cssText = `
       width:${size}px; height:${size}px;
       left:${Math.random()*100}%;
       top:${10 + Math.random()*80}%;
@@ -825,103 +824,106 @@ function spawnOrbs() {
       --delay:${-Math.random()*10}s;
       --op:${op};
     `;
-    canvas.appendChild(orb);
-  }
-}
-spawnOrbs();
+            canvas.appendChild(orb);
+        }
+    }
+    spawnOrbs();
 
-video.addEventListener('error', () => { canvas.style.opacity = '1'; });
-video.addEventListener('playing', () => { canvas.style.opacity = '0'; canvas.style.transition = 'opacity 1s'; });
+    video.addEventListener('error', () => { canvas.style.opacity = '1'; });
+    video.addEventListener('playing', () => {
+        canvas.style.opacity = '0';
+        canvas.style.transition = 'opacity 1s';
+    });
 
-/* ─── AUDIO PLAYER ─── */
-const tracks = [
-  {
-    title: 'Tender Love',
-    src: 'music.mp3'
-  },
-  {
-    title: 'Soaring Through The Skies',
-    src: 'music.mp3'
-  },
-  {
-    title: 'Romantic Wedding Piano',
-    src: 'music.mp3'
-  },
-  {
-    title: 'Wedding Waltz',
-    src: 'music.mp3'
-  },
-  {
-    title: 'Gentle Love',
-    src: 'music.mp3'
-  }
-];
+    /* ─── AUDIO PLAYER ─── */
+    const tracks = [{
+            title: 'Tender Love',
+            src: 'music.mp3'
+        },
+        {
+            title: 'Soaring Through The Skies',
+            src: 'music.mp3'
+        },
+        {
+            title: 'Romantic Wedding Piano',
+            src: 'music.mp3'
+        },
+        {
+            title: 'Wedding Waltz',
+            src: 'music.mp3'
+        },
+        {
+            title: 'Gentle Love',
+            src: 'music.mp3'
+        }
+    ];
 
-let currentTrack = 0;
-let isPlaying = false;
+    let currentTrack = 0;
+    let isPlaying = false;
 
-const audio       = document.getElementById('bgAudio');
-const playerEl    = document.getElementById('audio-player');
-const playBtn     = document.getElementById('playBtn');
-const playIcon    = document.getElementById('playIcon');
-const pauseIcon   = document.getElementById('pauseIcon');
-const prevBtn     = document.getElementById('prevBtn');
-const nextBtn     = document.getElementById('nextBtn');
-const titleEl     = document.getElementById('trackTitle');
-const vinylEl     = document.getElementById('vinyl');
-const volDots     = document.getElementById('volDots');
-const progressFill= document.getElementById('progressFill');
+    const audio = document.getElementById('bgAudio');
+    const playerEl = document.getElementById('audio-player');
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const titleEl = document.getElementById('trackTitle');
+    const vinylEl = document.getElementById('vinyl');
+    const volDots = document.getElementById('volDots');
+    const progressFill = document.getElementById('progressFill');
 
-function loadTrack(idx) {
-  currentTrack = (idx + tracks.length) % tracks.length;
-  audio.src = tracks[currentTrack].src;
-  titleEl.textContent = tracks[currentTrack].title;
-  if (isPlaying) audio.play().catch(() => {});
-}
+    function loadTrack(idx) {
+        currentTrack = (idx + tracks.length) % tracks.length;
+        audio.src = tracks[currentTrack].src;
+        titleEl.textContent = tracks[currentTrack].title;
+        if (isPlaying) audio.play().catch(() => {});
+    }
 
-function setPlaying(state) {
-  isPlaying = state;
-  if (state) {
-    playIcon.style.display = 'none';
-    pauseIcon.style.display = '';
-    vinylEl.classList.add('spinning');
-    volDots.classList.remove('paused');
-    audio.play().catch(() => { setPlaying(false); });
-  } else {
-    playIcon.style.display = '';
-    pauseIcon.style.display = 'none';
-    vinylEl.classList.remove('spinning');
-    volDots.classList.add('paused');
-    audio.pause();
-  }
-}
+    function setPlaying(state) {
+        isPlaying = state;
+        if (state) {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = '';
+            vinylEl.classList.add('spinning');
+            volDots.classList.remove('paused');
+            audio.play().catch(() => { setPlaying(false); });
+        } else {
+            playIcon.style.display = '';
+            pauseIcon.style.display = 'none';
+            vinylEl.classList.remove('spinning');
+            volDots.classList.add('paused');
+            audio.pause();
+        }
+    }
 
-playBtn.addEventListener('click', () => setPlaying(!isPlaying));
-prevBtn.addEventListener('click', () => loadTrack(currentTrack - 1));
-nextBtn.addEventListener('click', () => loadTrack(currentTrack + 1));
-audio.addEventListener('ended', () => loadTrack(currentTrack + 1));
+    playBtn.addEventListener('click', () => setPlaying(!isPlaying));
+    prevBtn.addEventListener('click', () => loadTrack(currentTrack - 1));
+    nextBtn.addEventListener('click', () => loadTrack(currentTrack + 1));
+    audio.addEventListener('ended', () => loadTrack(currentTrack + 1));
 
-audio.addEventListener('timeupdate', () => {
-  if (audio.duration) {
-    progressFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
-  }
-});
+    audio.addEventListener('timeupdate', () => {
+        if (audio.duration) {
+            progressFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+        }
+    });
 
-/* Try next track if current fails */
-audio.addEventListener('error', () => {
-  setTimeout(() => loadTrack(currentTrack + 1), 800);
-});
+    /* Try next track if current fails */
+    audio.addEventListener('error', () => {
+        setTimeout(() => loadTrack(currentTrack + 1), 800);
+    });
 
-/* Show player after unlock */
-function showPlayer() {
-  loadTrack(0);
-  playerEl.classList.remove('hidden-player');
-  /* Auto-play after a short delay (browsers may block instant autoplay) */
-  setTimeout(() => setPlaying(true), 600);
-}
+    /* Show player after unlock */
+    function showPlayer() {
+        loadTrack(0);
+        playerEl.classList.remove('hidden-player');
+        /* Auto-play after a short delay (browsers may block instant autoplay) */
+        setTimeout(() => setPlaying(true), 600);
+    }
 
-/* Hook into unlock button */
-document.querySelector('.unlock-btn').addEventListener('click', showPlayer);
-</script>
+    /* Hook into unlock button */
+    document.querySelector('.unlock-btn').addEventListener('click', showPlayer);
+    </script>
 </body>
+
 </html>
